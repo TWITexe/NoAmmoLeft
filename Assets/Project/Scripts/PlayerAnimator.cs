@@ -13,12 +13,13 @@ public class PlayerAnimation : MonoBehaviour
 
     [SerializeField]
     private float _rotationSpeed = 10f;
-
+    
     private Animator _animator;
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
+        this.ValidateSerializedFields();
     }
 
     public void UpdateAnimation(Vector2 moveDirection)

@@ -10,12 +10,16 @@ public class Gun : MonoBehaviour, IWeapon
     private Transform _firePoint;
 
     [SerializeField]
-    private float _fireRate = 5f; // shoots per second
+    private float _shootsPerSecond = 5f;
 
     private float _cooldown;
 
     public bool CanShoot => _cooldown <= 0f;
-    private bool HasBullet => _projectilePrefab != null && _firePoint != null;
+
+    private void Awake()
+    {
+        this.ValidateSerializedFields();
+    }
 
     private void Update()
     {
@@ -25,12 +29,13 @@ public class Gun : MonoBehaviour, IWeapon
 
     public void Shoot(Vector2 direction)
     {
-        if (!CanShoot || !HasBullet)
-            return;
+        if (CanShoot == false) return;
 
-        var projectile = Instantiate(_projectilePrefab, _firePoint.position, Quaternion.identity);
+        Quaternion rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
+
+        Projectile projectile = Instantiate(_projectilePrefab, _firePoint.position, rotation);
         projectile.Launch(direction.normalized);
 
-        _cooldown = 1f / _fireRate;
+        _cooldown = 1f / _shootsPerSecond;
     }
 }
