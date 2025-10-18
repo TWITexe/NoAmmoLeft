@@ -17,8 +17,10 @@ public class Projectile : MonoBehaviour
 
     private void Awake()
     {
-        if (_rb == null) 
+        if (_rb == null)
             _rb = GetComponent<Rigidbody2D>();
+
+        this.ValidateSerializedFields();
     }
 
     public void Launch(Vector2 direction)
@@ -29,7 +31,6 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Здесь можно повесить урон по врагу
         other.GetComponent<Health>()?.ApplyDamage(_damage);
         Destroy(gameObject);
     }

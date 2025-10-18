@@ -562,30 +562,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1511407778997459800, guid: b593035538f3c40a2b355ffed9709004, type: 3}
-      propertyPath: _rotationSpeed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 3048726776680908916, guid: b593035538f3c40a2b355ffed9709004, type: 3}
-      propertyPath: m_Size.x
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3048726776680908916, guid: b593035538f3c40a2b355ffed9709004, type: 3}
-      propertyPath: m_Size.y
-      value: 1.68
-      objectReference: {fileID: 0}
-    - target: {fileID: 3048726776680908916, guid: b593035538f3c40a2b355ffed9709004, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -39360385, guid: 56444e79c4dcb41e3ab468c412fe18f8, type: 3}
-    - target: {fileID: 3048726776680908916, guid: b593035538f3c40a2b355ffed9709004, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5479541369693301864, guid: b593035538f3c40a2b355ffed9709004, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 8b3508d7d3c344f2ca4fda3de3fb4c12, type: 2}
     - target: {fileID: 6035606415558609960, guid: b593035538f3c40a2b355ffed9709004, type: 3}
       propertyPath: m_Name
       value: Player
@@ -646,10 +622,6 @@ PrefabInstance:
     - target: {fileID: 5151299216448110695, guid: 896289b6b438242888391d9ddfe0d134, type: 3}
       propertyPath: m_Name
       value: Bullet
-      objectReference: {fileID: 0}
-    - target: {fileID: 5875458183398788233, guid: 896289b6b438242888391d9ddfe0d134, type: 3}
-      propertyPath: m_GravityScale
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

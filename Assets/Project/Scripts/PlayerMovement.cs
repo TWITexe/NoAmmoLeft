@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        this.ValidateSerializedFields();
     }
 
     public void Move(Vector2 input)
