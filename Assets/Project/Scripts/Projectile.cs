@@ -1,4 +1,5 @@
 using UnityEngine;
+using static NTC.Pool.NightPool;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Projectile : MonoBehaviour
@@ -26,12 +27,12 @@ public class Projectile : MonoBehaviour
     public void Launch(Vector2 direction)
     {
         _rb.linearVelocity = direction * _speed;
-        Destroy(gameObject, _lifetime);
+        Despawn(gameObject, _lifetime);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         other.GetComponent<Health>()?.ApplyDamage(_damage);
-        Destroy(gameObject);
+        Despawn(gameObject);
     }
 }
