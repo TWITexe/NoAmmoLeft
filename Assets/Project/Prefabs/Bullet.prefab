@@ -131,7 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 10
   _lifetime: 2
-  _damage: 1
+  _damage: 10
   _rb: {fileID: 5875458183398788233}
 --- !u!61 &7593672322201779028
 BoxCollider2D:

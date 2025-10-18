@@ -32,7 +32,10 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        other.GetComponent<Health>()?.ApplyDamage(_damage);
-        Despawn(gameObject);
+        if (other.TryGetComponent(out Health health))
+        {
+            health.ApplyDamage(_damage);
+            Despawn(gameObject);
+        }
     }
 }
