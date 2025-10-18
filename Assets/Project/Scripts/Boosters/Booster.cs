@@ -1,37 +1,64 @@
 using UnityEngine;
+using System.Collections;
+using NTC.Pool;
 using static NTC.Pool.NightPool;
 
 namespace Boosters
 {
-    public abstract class Booster : MonoBehaviour, ICollectable
+    [RequireComponent(typeof(Collider2D))]
+    [RequireComponent(typeof(SpriteRenderer))]
+    public abstract class Booster : MonoBehaviour, ICollectable, IPoolable
     {
         [SerializeField]
         protected float Duration = 5f;
 
-        private float _timer;
+        private Collider2D _collider;
+        private SpriteRenderer _spriteRenderer;
 
-        protected PlayerController Player;
-
-        public void Activate(PlayerController player)
+        protected virtual void OnSpawn()
         {
-            Player = player;
-            ApplyEffect();
-            _timer = Duration;
-            StartCoroutine(DeactivateAfterTime());
+            if (_spriteRenderer == null)
+                _spriteRenderer = GetComponent<SpriteRenderer>();
+
+            if (_collider == null)
+                _collider = GetComponent<Collider2D>();
+
+            _spriteRenderer.enabled = true;
+            _collider.enabled = true;
+            _collider.isTrigger = true;
         }
 
-        private System.Collections.IEnumerator DeactivateAfterTime()
+        public void Collect()
+        {
+            ApplyEffect();
+            StartCoroutine(DeactivateAfterTime());
+
+            Hide();
+        }
+
+        private void Hide()
+        {
+            _collider.enabled = false;
+            _spriteRenderer.enabled = false;
+        }
+
+        private IEnumerator DeactivateAfterTime()
         {
             yield return new WaitForSeconds(Duration);
             RemoveEffect();
+            Despawn(gameObject);
         }
 
         protected abstract void ApplyEffect();
         protected abstract void RemoveEffect();
 
-        public void Collect()
+        protected abstract void OnTriggerEnter2D(Collider2D other);
+
+        void ISpawnable.OnSpawn()
         {
-            Despawn(this);
+            OnSpawn();
         }
+
+        public void OnDespawn() { }
     }
 }

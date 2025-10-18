@@ -1,5 +1,4 @@
 using UnityEngine;
-using static NTC.Pool.NightPool;
 
 public class Gun : MonoBehaviour, IWeapon
 {
@@ -11,27 +10,26 @@ public class Gun : MonoBehaviour, IWeapon
     private Transform _firePoint;
 
     [SerializeField]
-    private Magazine _magazine;
+    private float _startDamage = 1f;
 
     [SerializeField]
-    private float _shootsPerSecond = 5f;
-
-    public float ShootsPerSecond
-    {
-        get => _shootsPerSecond;
-        set => _shootsPerSecond = value;
-    }
-
-    [SerializeField]
-    private float _damage = 1f;
-    public float DamageMultiplier { get; set; } = 1f;
+    private float _startShootsPerSecond = 5f;
 
     private float _cooldown;
+
+    public float Damage { get; private set; }
+    public float StartDamage => _startDamage;
+
+    public float ShootsPerSecond { get; private set; }
+    public float StartShootsPerSecond => _startShootsPerSecond;
 
     public bool CanShoot => _cooldown <= 0f;
 
     private void Awake()
     {
+        Damage = _startDamage;
+        ShootsPerSecond = _startShootsPerSecond;
+        
         this.ValidateSerializedFields();
     }
 
@@ -43,17 +41,36 @@ public class Gun : MonoBehaviour, IWeapon
 
     public void Shoot(Vector2 direction)
     {
-        if (CanShoot == false) return;
-        if (_magazine.AmountAmmo == 0) return;
-        
-        _magazine.RemoveAmmo(1);
+        if (!CanShoot)
+            return;
 
         Quaternion rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
 
-        Projectile projectile = Spawn(_projectilePrefab, _firePoint.position, rotation);
-        projectile.SetDamage(_damage * DamageMultiplier);
-        projectile.Launch(direction.normalized);
+        Projectile projectile = Instantiate(_projectilePrefab, _firePoint.position, rotation);
+        projectile.Launch(direction.normalized, Damage);
 
-        _cooldown = 1f / _shootsPerSecond;
+        _cooldown = 1f / ShootsPerSecond;
+    }
+
+    public void SetDamage(float damage)
+    {
+        if (damage <= 0f)
+        {
+            Debug.LogError("Damage must be greater than 0.");
+            return;
+        }
+
+        Damage = damage;
+    }
+
+    public void SetShootsPerSecond(float shootsPerSecond)
+    {
+        if (shootsPerSecond <= 0f)
+        {
+            Debug.LogError("Shoots per second must be greater than 0.");
+            return;
+        }
+
+        ShootsPerSecond = shootsPerSecond;
     }
 }

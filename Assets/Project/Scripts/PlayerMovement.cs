@@ -4,17 +4,22 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
-    private float _moveSpeed = 5f;
+    private float _startMoveSpeed = 5f;
+
+    public float MoveSpeed { get; private set; }
 
     private Rigidbody2D _rb;
     private Vector2 _moveInput;
 
     public Vector2 CurrentVelocity => _rb.linearVelocity;
+    public float StartMoveSpeed => _startMoveSpeed;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         this.ValidateSerializedFields();
+
+        MoveSpeed = _startMoveSpeed;
     }
 
     public void Move(Vector2 input)
@@ -24,6 +29,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rb.linearVelocity = _moveInput * _moveSpeed;
+        _rb.linearVelocity = _moveInput * MoveSpeed;
+    }
+
+    public void SetSpeed(float speedMultiplier)
+    {
+        if (speedMultiplier <= 0f)
+        {
+            Debug.LogError("Speed multiplier must be greater than 0.");
+            return;
+        }
+
+        MoveSpeed *= speedMultiplier;
     }
 }
