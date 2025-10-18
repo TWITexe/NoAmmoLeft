@@ -22,7 +22,5 @@ public class HealthBar : MonoBehaviour
     private void UpdateBar(float value)
     {
         _tank.fillAmount = value / _health.MaxHealth;
-        Debug.Log($"update bar");
-        Debug.Log($"{value}/{_health.MaxHealth} {_tank.fillAmount}");
     }
 }

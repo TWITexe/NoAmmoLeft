@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 413332390116095886, guid: b593035538f3c40a2b355ffed9709004, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 4.726305
       objectReference: {fileID: 0}
     - target: {fileID: 413332390116095886, guid: b593035538f3c40a2b355ffed9709004, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.1323893
       objectReference: {fileID: 0}
     - target: {fileID: 413332390116095886, guid: b593035538f3c40a2b355ffed9709004, type: 3}
       propertyPath: m_LocalPosition.z
@@ -49,6 +49,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1175886744022870443, guid: b593035538f3c40a2b355ffed9709004, type: 3}
+      propertyPath: _fireButton
+      value: 303
+      objectReference: {fileID: 0}
+    - target: {fileID: 1175886744022870443, guid: b593035538f3c40a2b355ffed9709004, type: 3}
       propertyPath: _verticalAxis
       value: Vertical2
       objectReference: {fileID: 0}
@@ -66,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 110dc73d85a59d34faadbf1921803806, type: 2}
     - target: {fileID: 6035606415558609960, guid: b593035538f3c40a2b355ffed9709004, type: 3}
       propertyPath: m_Name
-      value: Player Variant
+      value: Player Purple
       objectReference: {fileID: 0}
     - target: {fileID: 8060749229972234174, guid: b593035538f3c40a2b355ffed9709004, type: 3}
       propertyPath: m_BodyType

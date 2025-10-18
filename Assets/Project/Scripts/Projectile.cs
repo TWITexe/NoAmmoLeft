@@ -10,10 +10,7 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     private float _lifetime = 2f;
 
-    [SerializeField]
-    private int _damage = 1;
-
-    [SerializeField]
+    private float _damage;
     private Rigidbody2D _rb;
 
     private void Awake()
@@ -24,8 +21,13 @@ public class Projectile : MonoBehaviour
         this.ValidateSerializedFields();
     }
 
-    public void Launch(Vector2 direction)
+    public void Launch(Vector2 direction, float damage)
     {
+        if (_rb == null)
+            _rb = GetComponent<Rigidbody2D>();
+
+        _damage = damage;
+
         _rb.linearVelocity = direction * _speed;
         Despawn(gameObject, _lifetime);
     }
@@ -35,7 +37,6 @@ public class Projectile : MonoBehaviour
         if (other.TryGetComponent(out Health health))
         {
             health.ApplyDamage(_damage);
-            Despawn(gameObject);
         }
     }
 }

@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b98064900e00422399b5dc582fb1b570, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 5
+  _startMoveSpeed: 5
 --- !u!114 &8162996325130811920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,6 +397,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _projectilePrefab: {fileID: 4245044118066524276, guid: 896289b6b438242888391d9ddfe0d134, type: 3}
-  _firePoint: {fileID: 4134264803959939806}
+  _spriteRenderer: {fileID: 8412339361827475071}
   _magazine: {fileID: 967192800308439448}
-  _shootsPerSecond: 5
+  _firePoint: {fileID: 4134264803959939806}
+  _startDamage: 10
+  _startShootsPerSecond: 5
