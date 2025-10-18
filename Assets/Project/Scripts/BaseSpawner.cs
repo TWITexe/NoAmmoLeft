@@ -12,10 +12,6 @@ public class BaseSpawner : MonoBehaviour
     private bool _isSpawning = false;
     private Coroutine _spawnCoroutine;
 
-    void Start()
-    {
-        StartSpawn();
-    }
     public void StartSpawn()
     {
         if (_isSpawning) return;
