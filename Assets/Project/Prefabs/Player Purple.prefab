@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 413332390116095886, guid: b593035538f3c40a2b355ffed9709004, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.726305
+      value: 4.93
       objectReference: {fileID: 0}
     - target: {fileID: 413332390116095886, guid: b593035538f3c40a2b355ffed9709004, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.1323893
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 413332390116095886, guid: b593035538f3c40a2b355ffed9709004, type: 3}
       propertyPath: m_LocalPosition.z
@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1175886744022870443, guid: b593035538f3c40a2b355ffed9709004, type: 3}
       propertyPath: _fireButton
-      value: 303
+      value: 305
       objectReference: {fileID: 0}
     - target: {fileID: 1175886744022870443, guid: b593035538f3c40a2b355ffed9709004, type: 3}
       propertyPath: _verticalAxis

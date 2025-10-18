@@ -1,13 +1,23 @@
 using UnityEngine;
 using System.Collections;
+using static NTC.Pool.NightPool;
 
 public class BaseSpawner : MonoBehaviour
 {
-    [SerializeField] private Transform pointA;     
-    [SerializeField] private Transform pointB;     
-    [SerializeField] private GameObject prefab;   
-    [SerializeField] private float minDelay = 2f;  
-    [SerializeField] private float maxDelay = 5f;  
+    [SerializeField]
+    private Transform pointA;
+
+    [SerializeField]
+    private Transform pointB;
+
+    [SerializeField]
+    private GameObject prefab;
+
+    [SerializeField]
+    private float minDelay = 2f;
+
+    [SerializeField]
+    private float maxDelay = 5f;
 
     private bool _isSpawning = false;
     private Coroutine _spawnCoroutine;
@@ -23,6 +33,7 @@ public class BaseSpawner : MonoBehaviour
     {
         if (!_isSpawning) return;
         _isSpawning = false;
+
         if (_spawnCoroutine != null)
             StopCoroutine(_spawnCoroutine);
     }
@@ -41,8 +52,8 @@ public class BaseSpawner : MonoBehaviour
     {
         float x = Random.Range(pointA.position.x, pointB.position.x);
         float y = Random.Range(pointA.position.y, pointB.position.y);
-        Vector2 spawnPos = new Vector2(x, y);
+        Vector2 spawnPos = new(x, y);
 
-        Instantiate(prefab, spawnPos, Quaternion.identity);
+        Spawn(prefab, spawnPos, Quaternion.identity);
     }
 }
