@@ -11,12 +11,24 @@ namespace Boosters
 
         protected override void ApplyEffect()
         {
+            if (_gun == null)
+            {
+                Debug.LogError("DamageUpBooster: Gun not found.");
+                return;
+            }
+            
             float damage = _gun.Damage * _damageMultiplier;
             _gun.SetDamage(damage);
         }
 
         protected override void RemoveEffect()
         {
+            if (_gun == null)
+            {
+                Debug.LogError("DamageUpBooster: Gun not found.");
+                return;
+            }
+            
             _gun.SetDamage(_gun.StartDamage);
         }
 

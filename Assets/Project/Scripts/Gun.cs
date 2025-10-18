@@ -1,10 +1,17 @@
 using UnityEngine;
+using static NTC.Pool.NightPool;
 
 public class Gun : MonoBehaviour, IWeapon
 {
     [Header("Gun Settings")]
     [SerializeField]
     private Projectile _projectilePrefab;
+
+    [SerializeField]
+    private SpriteRenderer _spriteRenderer;
+
+    [SerializeField]
+    private Magazine _magazine;
 
     [SerializeField]
     private Transform _firePoint;
@@ -25,11 +32,13 @@ public class Gun : MonoBehaviour, IWeapon
 
     public bool CanShoot => _cooldown <= 0f;
 
+    private bool _isEnabled = false;
+
     private void Awake()
     {
         Damage = _startDamage;
         ShootsPerSecond = _startShootsPerSecond;
-        
+
         this.ValidateSerializedFields();
     }
 
@@ -41,13 +50,17 @@ public class Gun : MonoBehaviour, IWeapon
 
     public void Shoot(Vector2 direction)
     {
-        if (!CanShoot)
+        if (!CanShoot && !_isEnabled)
+            return;
+
+        if (_magazine.AmountAmmo <= 0)
             return;
 
         Quaternion rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
 
-        Projectile projectile = Instantiate(_projectilePrefab, _firePoint.position, rotation);
+        Projectile projectile = Spawn(_projectilePrefab, _firePoint.position, rotation);
         projectile.Launch(direction.normalized, Damage);
+        _magazine.RemoveAmmo(1);
 
         _cooldown = 1f / ShootsPerSecond;
     }
@@ -72,5 +85,11 @@ public class Gun : MonoBehaviour, IWeapon
         }
 
         ShootsPerSecond = shootsPerSecond;
+    }
+
+    public void SetEnable(bool value)
+    {
+        _isEnabled = value;
+        _spriteRenderer.enabled = value;
     }
 }

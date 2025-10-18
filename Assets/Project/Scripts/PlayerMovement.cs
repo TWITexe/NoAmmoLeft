@@ -32,14 +32,14 @@ public class PlayerMovement : MonoBehaviour
         _rb.linearVelocity = _moveInput * MoveSpeed;
     }
 
-    public void SetSpeed(float speedMultiplier)
+    public void SetSpeed(float speed)
     {
-        if (speedMultiplier <= 0f)
+        if (speed <= 0f)
         {
             Debug.LogError("Speed multiplier must be greater than 0.");
             return;
         }
 
-        MoveSpeed *= speedMultiplier;
+        MoveSpeed = speed;
     }
 }

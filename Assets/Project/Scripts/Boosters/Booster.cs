@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using NTC.Pool;
@@ -15,6 +16,11 @@ namespace Boosters
         private Collider2D _collider;
         private SpriteRenderer _spriteRenderer;
 
+        private void Awake()
+        {
+            OnSpawn();
+        }
+
         protected virtual void OnSpawn()
         {
             if (_spriteRenderer == null)
@@ -31,9 +37,8 @@ namespace Boosters
         public void Collect()
         {
             ApplyEffect();
-            StartCoroutine(DeactivateAfterTime());
-
             Hide();
+            StartCoroutine(DeactivateAfterTime());
         }
 
         private void Hide()

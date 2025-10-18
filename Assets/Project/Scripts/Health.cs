@@ -33,7 +33,7 @@ public class Health : MonoBehaviour
 
     private void Awake()
     {
-        MaxHealth = _startMaxHealth;
+        SetMaxHealth(_startMaxHealth);
         UpdateHealthToMax();
     }
 

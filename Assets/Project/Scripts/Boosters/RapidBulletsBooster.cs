@@ -11,11 +11,23 @@ namespace Boosters
 
         protected override void ApplyEffect()
         {
+            if (_gun == null)
+            {
+                Debug.LogError("RapidBulletsBooster: Gun not found.");
+                return;
+            }
+            
             _gun.SetShootsPerSecond(_gun.StartShootsPerSecond * _fireRateMultiplier);
         }
 
         protected override void RemoveEffect()
         {
+            if (_gun == null)
+            {
+                Debug.LogError("RapidBulletsBooster: Gun not found.");
+                return;
+            }
+            
             _gun.SetShootsPerSecond(_gun.StartShootsPerSecond);
         }
 
