@@ -9,7 +9,7 @@ public class PlayerAnimation : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
 
     [SerializeField]
-    private float _minMoveToAnimate = 0.1f;
+    private float _minMoveToAnimate = 0f;
 
     [SerializeField]
     private float _rotationSpeed = 10f;
