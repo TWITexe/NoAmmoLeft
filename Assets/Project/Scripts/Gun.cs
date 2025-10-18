@@ -16,6 +16,16 @@ public class Gun : MonoBehaviour, IWeapon
     [SerializeField]
     private float _shootsPerSecond = 5f;
 
+    public float ShootsPerSecond
+    {
+        get => _shootsPerSecond;
+        set => _shootsPerSecond = value;
+    }
+
+    [SerializeField]
+    private float _damage = 1f;
+    public float DamageMultiplier { get; set; } = 1f;
+
     private float _cooldown;
 
     public bool CanShoot => _cooldown <= 0f;
@@ -41,6 +51,7 @@ public class Gun : MonoBehaviour, IWeapon
         Quaternion rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
 
         Projectile projectile = Spawn(_projectilePrefab, _firePoint.position, rotation);
+        projectile.SetDamage(_damage * DamageMultiplier);
         projectile.Launch(direction.normalized);
 
         _cooldown = 1f / _shootsPerSecond;

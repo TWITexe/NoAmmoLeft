@@ -9,9 +9,12 @@ public class Projectile : MonoBehaviour
 
     [SerializeField]
     private float _lifetime = 2f;
-
-    [SerializeField]
-    private int _damage = 1;
+    
+    private float _damage;
+    public void SetDamage(float damage)
+    {
+        _damage = damage;
+    }
 
     [SerializeField]
     private Rigidbody2D _rb;
