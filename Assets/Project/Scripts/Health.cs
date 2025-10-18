@@ -40,7 +40,7 @@ public class Health : MonoBehaviour
     public void Heal(float value)
     {
         if (value < 0)
-            throw new ArgumentOutOfRangeException(nameof(value));
+            return;
 
         CurrentHealth += value;
     }
@@ -51,6 +51,7 @@ public class Health : MonoBehaviour
             return;
 
         CurrentHealth -= damage;
+        Debug.Log("Health: " + CurrentHealth);
 
         DamageApplied?.Invoke();
     }
@@ -58,7 +59,7 @@ public class Health : MonoBehaviour
     public void SetMaxHealth(float maxHealth)
     {
         if (maxHealth <= 0)
-            throw new ArgumentOutOfRangeException(nameof(maxHealth));
+            return;
 
         MaxHealth = maxHealth;
 
