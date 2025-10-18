@@ -7,6 +7,7 @@ public class Timer : MonoBehaviour
 {
     [SerializeField] private float time;
     [SerializeField] private Image timerImage;
+    [SerializeField] private GameObject timerDownImage;
 
     private float _timeLeft = 0f;
     public event Action OnTimerEnd;
@@ -20,6 +21,8 @@ public class Timer : MonoBehaviour
             yield return null;
         }
         OnTimerEnd?.Invoke();
+        timerImage.gameObject.SetActive(false);
+        timerDownImage.SetActive(false);
     }
 
     private void Start()
