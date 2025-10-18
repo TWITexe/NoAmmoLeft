@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 using System.Collections;
 
 public class Timer : MonoBehaviour
@@ -8,13 +9,9 @@ public class Timer : MonoBehaviour
     [SerializeField] private Image timerImage;
 
     private float _timeLeft = 0f;
-
+    public event Action OnTimerEnd;
     private IEnumerator StartTimer()
     {
-        if (_timeLeft <= 0)
-        {
-
-        }
         while (_timeLeft > 0)
         {
             _timeLeft -= Time.deltaTime;
@@ -22,6 +19,7 @@ public class Timer : MonoBehaviour
             timerImage.fillAmount = normalizedValue;
             yield return null;
         }
+        OnTimerEnd?.Invoke();
     }
 
     private void Start()
