@@ -17,49 +17,49 @@ MonoBehaviour:
     _enabled: 1
     _prefab: {fileID: 8505293712855184166, guid: 9ba917dfc853342d290bc188122a3e8c, type: 3}
     _behaviourOnCapacityReached: 2
-    _despawnType: 0
+    _despawnType: 2
     _callbacksType: 0
     _capacity: 10
-    _preloadSize: 10
+    _preloadSize: 5
     _dontDestroyOnLoad: 0
     _warnings: 0
   - _name: Bullet
-    _enabled: 0
+    _enabled: 1
     _prefab: {fileID: 5151299216448110695, guid: 896289b6b438242888391d9ddfe0d134, type: 3}
     _behaviourOnCapacityReached: 2
-    _despawnType: 0
+    _despawnType: 2
     _callbacksType: 0
     _capacity: 20
     _preloadSize: 15
     _dontDestroyOnLoad: 0
     _warnings: 0
   - _name: Speed Buster
-    _enabled: 0
+    _enabled: 1
     _prefab: {fileID: 3559612728090764928, guid: a7f15f709c35c45cb8afc22886348abb, type: 3}
     _behaviourOnCapacityReached: 2
-    _despawnType: 0
+    _despawnType: 2
     _callbacksType: 0
-    _capacity: 10
+    _capacity: 3
     _preloadSize: 2
     _dontDestroyOnLoad: 0
     _warnings: 0
   - _name: Speed Rate Buster
-    _enabled: 0
+    _enabled: 1
     _prefab: {fileID: 4600016723995404964, guid: 1acd1f968c74448e68ef1f8ec83c81eb, type: 3}
     _behaviourOnCapacityReached: 2
-    _despawnType: 0
-    _callbacksType: 0
-    _capacity: 10
+    _despawnType: 2
+    _callbacksType: 1
+    _capacity: 3
     _preloadSize: 2
     _dontDestroyOnLoad: 0
     _warnings: 0
-  - _name: 
-    _enabled: 0
-    _prefab: {fileID: 0}
-    _behaviourOnCapacityReached: 0
-    _despawnType: 0
-    _callbacksType: 0
-    _capacity: 10
+  - _name: Strong Buster
+    _enabled: 1
+    _prefab: {fileID: 1960093462627646201, guid: 3b125772313f24c19b8ad2d567c93913, type: 3}
+    _behaviourOnCapacityReached: 2
+    _despawnType: 2
+    _callbacksType: 1
+    _capacity: 3
     _preloadSize: 2
     _dontDestroyOnLoad: 0
     _warnings: 0

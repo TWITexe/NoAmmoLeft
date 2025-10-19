@@ -1,8 +1,9 @@
+using NTC.Pool;
 using UnityEngine;
 using static NTC.Pool.NightPool;
 
 [RequireComponent(typeof(Collider2D))]
-public class CollectableAmmo : MonoBehaviour, ICollectable
+public class CollectableAmmo : MonoBehaviour, ICollectable, IPoolable
 {
     [SerializeField]
     private int _amount = 1;
@@ -20,4 +21,7 @@ public class CollectableAmmo : MonoBehaviour, ICollectable
             Collect();
         }
     }
+
+    public void OnSpawn() { }
+    public void OnDespawn() { }
 }
