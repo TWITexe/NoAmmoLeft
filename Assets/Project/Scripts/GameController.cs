@@ -1,9 +1,13 @@
+using UI;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    [SerializeField] private Timer timer;
-    [SerializeField] private BaseSpawner spawner;
+    [SerializeField]
+    private Timer timer;
+
+    [SerializeField]
+    private BaseSpawner spawner;
 
     private void Start()
     {

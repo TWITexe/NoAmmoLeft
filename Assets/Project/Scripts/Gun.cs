@@ -1,3 +1,5 @@
+using System;
+using UI;
 using UnityEngine;
 using static NTC.Pool.NightPool;
 
@@ -14,6 +16,9 @@ public class Gun : MonoBehaviour, IWeapon
     private Magazine _magazine;
 
     [SerializeField]
+    private Timer _timer;
+
+    [SerializeField]
     private Transform _firePoint;
 
     [SerializeField]
@@ -24,6 +29,10 @@ public class Gun : MonoBehaviour, IWeapon
 
     private float _cooldown;
 
+    private bool _isEnabled = false;
+
+    public event Action NoAmmoLeft;
+
     public float Damage { get; private set; }
     public float StartDamage => _startDamage;
 
@@ -32,14 +41,21 @@ public class Gun : MonoBehaviour, IWeapon
 
     public bool CanShoot => _cooldown <= 0f;
 
-    private bool _isEnabled = false;
-
     private void Awake()
     {
+        this.ValidateSerializedFields();
+
         Damage = _startDamage;
         ShootsPerSecond = _startShootsPerSecond;
 
-        this.ValidateSerializedFields();
+        _timer.OnTimerStart += TurnOff;
+        _timer.OnTimerEnd += TurnOn;
+    }
+
+    private void OnDestroy()
+    {
+        _timer.OnTimerEnd -= TurnOff;
+        _timer.OnTimerStart -= TurnOff;
     }
 
     private void Update()
@@ -50,7 +66,7 @@ public class Gun : MonoBehaviour, IWeapon
 
     public void Shoot(Vector2 direction)
     {
-        if (!CanShoot && !_isEnabled)
+        if (!CanShoot || !_isEnabled)
             return;
 
         if (_magazine.AmountAmmo <= 0)
@@ -63,6 +79,9 @@ public class Gun : MonoBehaviour, IWeapon
         _magazine.RemoveAmmo(1);
 
         _cooldown = 1f / ShootsPerSecond;
+
+        if (_magazine.AmountAmmo <= 0)
+            NoAmmoLeft?.Invoke();
     }
 
     public void SetDamage(float damage)
@@ -87,7 +106,17 @@ public class Gun : MonoBehaviour, IWeapon
         ShootsPerSecond = shootsPerSecond;
     }
 
-    public void SetEnable(bool value)
+    private void TurnOff()
+    {
+        SetEnable(false);
+    }
+
+    private void TurnOn()
+    {
+        SetEnable(true);
+    }
+
+    private void SetEnable(bool value)
     {
         _isEnabled = value;
         _spriteRenderer.enabled = value;

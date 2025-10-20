@@ -1,26 +1,37 @@
+using System;
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using static NTC.Pool.NightPool;
+using Random = UnityEngine.Random;
 
 public class BaseSpawner : MonoBehaviour
 {
     [SerializeField]
-    private Transform pointA;
+    private Transform _pointA;
 
     [SerializeField]
-    private Transform pointB;
+    private Transform _pointB;
 
     [SerializeField]
-    private GameObject prefab;
+    private GameObject _prefab;
 
     [SerializeField]
-    private float minDelay = 2f;
+    private float _minDelay = 2f;
 
     [SerializeField]
-    private float maxDelay = 5f;
+    private float _maxDelay = 5f;
+
+    private List<GameObject> _objectList = new();
+
+    private Coroutine _spawnCoroutine;
 
     private bool _isSpawning = false;
-    private Coroutine _spawnCoroutine;
+
+    private void Awake()
+    {
+        this.ValidateSerializedFields();
+    }
 
     public void StartSpawn()
     {
@@ -31,11 +42,23 @@ public class BaseSpawner : MonoBehaviour
 
     public void StopSpawn()
     {
-        if (!_isSpawning) return;
+        if (!_isSpawning)
+            return;
+
         _isSpawning = false;
 
         if (_spawnCoroutine != null)
             StopCoroutine(_spawnCoroutine);
+
+        DespawnAll();
+    }
+
+    private void DespawnAll()
+    {
+        foreach (GameObject obj in _objectList)
+        {
+            Despawn(obj);
+        }
     }
 
     private IEnumerator SpawnLoop()
@@ -43,17 +66,22 @@ public class BaseSpawner : MonoBehaviour
         while (_isSpawning)
         {
             SpawnObject();
-            float delay = Random.Range(minDelay, maxDelay);
+            float delay = Random.Range(_minDelay, _maxDelay);
             yield return new WaitForSeconds(delay);
         }
     }
 
     private void SpawnObject()
     {
-        float x = Random.Range(pointA.position.x, pointB.position.x);
-        float y = Random.Range(pointA.position.y, pointB.position.y);
+        float x = Random.Range(_pointA.position.x, _pointB.position.x);
+        float y = Random.Range(_pointA.position.y, _pointB.position.y);
         Vector2 spawnPos = new(x, y);
 
-        Spawn(prefab, spawnPos, Quaternion.identity);
+        var obj = Spawn(_prefab, spawnPos, Quaternion.identity);
+
+        if (_objectList.Contains(obj))
+            return;
+
+        _objectList.Add(obj);
     }
 }

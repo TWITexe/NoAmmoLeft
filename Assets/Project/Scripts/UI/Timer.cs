@@ -1,33 +1,49 @@
-using UnityEngine;
-using UnityEngine.UI;
 using System;
 using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
 
-public class Timer : MonoBehaviour
+namespace UI
 {
-    [SerializeField] private float time;
-    [SerializeField] private Image timerImage;
-    [SerializeField] private GameObject timerDownImage;
-
-    private float _timeLeft = 0f;
-    public event Action OnTimerEnd;
-    private IEnumerator StartTimer()
+    public class Timer : MonoBehaviour
     {
-        while (_timeLeft > 0)
+        [SerializeField]
+        private float _time;
+
+        [SerializeField]
+        private Image _timerImage;
+
+        [SerializeField]
+        private Image _timerDownImage;
+
+        private float _timeLeft = 0f;
+
+        public event Action OnTimerEnd;
+        public event Action OnTimerStart;
+
+        private void Start()
         {
-            _timeLeft -= Time.deltaTime;
-            var normalizedValue = Mathf.Clamp(_timeLeft / time, 0.0f, 1.0f);
-            timerImage.fillAmount = normalizedValue;
-            yield return null;
+            _timeLeft = _time;
+            StartCoroutine(StartTimer());
         }
-        OnTimerEnd?.Invoke();
-        timerImage.gameObject.SetActive(false);
-        timerDownImage.SetActive(false);
-    }
 
-    private void Start()
-    {
-        _timeLeft = time;
-        StartCoroutine(StartTimer());
+        private IEnumerator StartTimer()
+        {
+            OnTimerStart?.Invoke();
+            _timerImage.gameObject.SetActive(true);
+            _timerDownImage.gameObject.SetActive(true);
+
+            while (_timeLeft > 0)
+            {
+                _timeLeft -= Time.deltaTime;
+                float normalizedValue = Mathf.Clamp(_timeLeft / _time, 0.0f, 1.0f);
+                _timerImage.fillAmount = normalizedValue;
+                yield return null;
+            }
+
+            OnTimerEnd?.Invoke();
+            _timerImage.gameObject.SetActive(false);
+            _timerDownImage.gameObject.SetActive(false);
+        }
     }
 }
