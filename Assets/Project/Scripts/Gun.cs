@@ -1,5 +1,6 @@
 using System;
 using UI;
+using Unity.VisualScripting;
 using UnityEngine;
 using static NTC.Pool.NightPool;
 
@@ -16,7 +17,7 @@ public class Gun : MonoBehaviour, IWeapon
     private Magazine _magazine;
 
     [SerializeField]
-    private Timer _timer;
+    private UI.Timer _timer;
 
     [SerializeField]
     private Transform _firePoint;
@@ -26,6 +27,9 @@ public class Gun : MonoBehaviour, IWeapon
 
     [SerializeField]
     private float _startShootsPerSecond = 5f;
+
+    [SerializeField]
+    private Health _health;
 
     private float _cooldown;
 
@@ -40,6 +44,8 @@ public class Gun : MonoBehaviour, IWeapon
     public float StartShootsPerSecond => _startShootsPerSecond;
 
     public bool CanShoot => _cooldown <= 0f;
+
+    public bool IsEnabled => _isEnabled;
 
     private void Awake()
     {
@@ -66,7 +72,7 @@ public class Gun : MonoBehaviour, IWeapon
 
     public void Shoot(Vector2 direction)
     {
-        if (!CanShoot || !_isEnabled)
+        if (!CanShoot || !_isEnabled || !_health.IsAlive)
             return;
 
         if (_magazine.AmountAmmo <= 0)
@@ -80,7 +86,7 @@ public class Gun : MonoBehaviour, IWeapon
 
         _cooldown = 1f / ShootsPerSecond;
 
-        if (_magazine.AmountAmmo <= 0)
+        if (_magazine.AmountAmmo <= 0 || !_health.IsAlive)
             NoAmmoLeft?.Invoke();
     }
 
