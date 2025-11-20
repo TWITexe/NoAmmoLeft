@@ -15,6 +15,7 @@ public class PlayerInputReader : MonoBehaviour, IInputReader
     private KeyCode _fireButton = KeyCode.Space;
 
     public bool IsShooting => Input.GetKey(_fireButton);
+    public bool IsKicking => Input.GetKey(_fireButton);
 
     private void Awake()
     {

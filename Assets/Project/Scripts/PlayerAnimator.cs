@@ -39,4 +39,17 @@ public class PlayerAnimation : MonoBehaviour
         Quaternion targetRot = Quaternion.Euler(0f, 0f, targetAngle);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, Time.deltaTime * _rotationSpeed);
     }
+
+    public void DieAnimation()
+    {
+        _animator.SetBool("IsDead", true);
+    }
+    public void KickAnimation()
+    {
+        _animator.SetTrigger("Kick");
+    }
+    public void StunAnimation(bool isActive)
+    {
+        _animator.SetBool("IsStun", isActive);
+    }
 }

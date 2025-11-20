@@ -51,7 +51,6 @@ public class Health : MonoBehaviour
             return;
 
         CurrentHealth -= damage;
-        Debug.Log("Health: " + CurrentHealth);
 
         DamageApplied?.Invoke();
     }
@@ -73,6 +72,7 @@ public class Health : MonoBehaviour
 
     private void Dead()
     {
-        gameObject.SetActive(false);
+        gameObject.GetComponent<PlayerAnimation>().DieAnimation();
+        
     }
 }
