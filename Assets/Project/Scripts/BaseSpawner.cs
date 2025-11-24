@@ -14,7 +14,7 @@ public class BaseSpawner : MonoBehaviour
     private Transform _pointB;
 
     [SerializeField]
-    private GameObject _prefab;
+    private GameObject[] _prefabs;
 
     [SerializeField]
     private float _minDelay = 2f;
@@ -73,15 +73,31 @@ public class BaseSpawner : MonoBehaviour
 
     private void SpawnObject()
     {
+        // На всякий случай проверка, чтобы не словить IndexOutOfRange
+        if (_prefabs == null || _prefabs.Length == 0)
+        {
+            Debug.LogWarning($"{nameof(BaseSpawner)}: массив _prefabs пуст");
+            return;
+        }
+
+        int randomIndex = Random.Range(0, _prefabs.Length);
+        GameObject prefabToSpawn = _prefabs[randomIndex];
+
+        if (prefabToSpawn == null)
+        {
+            Debug.LogWarning($"{nameof(BaseSpawner)}: в массиве _prefabs есть null на индексе {randomIndex}.");
+            return;
+        }
+
         float x = Random.Range(_pointA.position.x, _pointB.position.x);
         float y = Random.Range(_pointA.position.y, _pointB.position.y);
         Vector2 spawnPos = new(x, y);
 
-        var obj = Spawn(_prefab, spawnPos, Quaternion.identity);
+        var obj = Spawn(prefabToSpawn, spawnPos, Quaternion.identity);
 
-        if (_objectList.Contains(obj))
-            return;
-
-        _objectList.Add(obj);
+        if (!_objectList.Contains(obj))
+        {
+            _objectList.Add(obj);
+        }
     }
 }
