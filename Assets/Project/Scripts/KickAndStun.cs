@@ -25,6 +25,7 @@ public class KickAndStun : MonoBehaviour
         Debug.Log(gameObject.name + " stunned");
         _isStun = true;
         _animation.StunAnimation(true);
+        gameObject.GetComponent<SpriteRenderer>().sortingOrder = 0;
         StartCoroutine(WakeUp());
     }
     IEnumerator WakeUp()
@@ -33,7 +34,8 @@ public class KickAndStun : MonoBehaviour
         _animation.StunAnimation(false);
         yield return new WaitForSeconds(stunTime);
         _isStun = false;
+        gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
     }
-    
-    
+
+
 }
