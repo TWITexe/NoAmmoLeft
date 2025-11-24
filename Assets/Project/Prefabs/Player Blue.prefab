@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 967192800308439448}
   - component: {fileID: 7946395382083998922}
   - component: {fileID: 5545114434156848236}
+  - component: {fileID: -6717885728857027307}
   m_Layer: 0
   m_Name: Player Blue
   m_TagString: Untagged
@@ -209,7 +210,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -39360385, guid: 56444e79c4dcb41e3ab468c412fe18f8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -403,6 +404,22 @@ MonoBehaviour:
   playerAnimator: {fileID: 5479541369693301864}
   fist: {fileID: 3273450862714365420}
   stunTime: 3
+--- !u!114 &-6717885728857027307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6035606415558609960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97e0ef5d1d313444c8082eecd02f4527, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pointA: {fileID: 0}
+  _pointB: {fileID: 0}
+  _damageAmount: 1
+  _damageInterval: 1
 --- !u!1 &6561529981587395624
 GameObject:
   m_ObjectHideFlags: 0

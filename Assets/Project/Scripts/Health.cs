@@ -73,6 +73,8 @@ public class Health : MonoBehaviour
     private void Dead()
     {
         gameObject.GetComponent<PlayerAnimation>().DieAnimation();
-        
+        gameObject.GetComponent<SpriteRenderer>().sortingOrder = 0;
+
+
     }
 }
