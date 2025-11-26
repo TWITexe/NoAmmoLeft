@@ -88,6 +88,7 @@ public class Gun : MonoBehaviour, IWeapon
 
         if (_magazine.AmountAmmo <= 0 || !_health.IsAlive)
             NoAmmoLeft?.Invoke();
+            
     }
 
     public void SetDamage(float damage)
