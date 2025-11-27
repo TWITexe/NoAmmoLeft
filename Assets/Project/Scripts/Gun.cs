@@ -16,6 +16,7 @@ public class Gun : MonoBehaviour, IWeapon
     [SerializeField]
     private Magazine _magazine;
 
+    
     [SerializeField]
     private UI.Timer _timer;
 
@@ -30,6 +31,9 @@ public class Gun : MonoBehaviour, IWeapon
 
     [SerializeField]
     private Health _health;
+
+    [SerializeField]
+    private KickAndStun _kickAndStun;
 
     private float _cooldown;
 
@@ -72,7 +76,7 @@ public class Gun : MonoBehaviour, IWeapon
 
     public void Shoot(Vector2 direction)
     {
-        if (!CanShoot || !_isEnabled || !_health.IsAlive)
+        if (!CanShoot || !_isEnabled || !_health.IsAlive || _kickAndStun.IsStun)
             return;
 
         if (_magazine.AmountAmmo <= 0)

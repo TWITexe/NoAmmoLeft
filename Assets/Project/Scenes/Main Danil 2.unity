@@ -686,6 +686,10 @@ PrefabInstance:
       propertyPath: _timer
       value: 
       objectReference: {fileID: 2050913531}
+    - target: {fileID: 7693282993080976556, guid: b593035538f3c40a2b355ffed9709004, type: 3}
+      propertyPath: _kickAndStun
+      value: 
+      objectReference: {fileID: 1688024273}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1614,6 +1618,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6035606415558609960, guid: b593035538f3c40a2b355ffed9709004, type: 3}
   m_PrefabInstance: {fileID: 780108128}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1688024273 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5545114434156848236, guid: b593035538f3c40a2b355ffed9709004, type: 3}
+  m_PrefabInstance: {fileID: 780108128}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688024270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efdd9790485369b4c9433df3c9e5a9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1729796113 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2304672891613489390, guid: 3e7c2756db1714cf6824e2a719ec18eb, type: 3}
@@ -1660,6 +1675,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2485524898215325708, guid: 3e7c2756db1714cf6824e2a719ec18eb, type: 3}
   m_PrefabInstance: {fileID: 1910908471}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1762076534 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4415963626913699912, guid: 3e7c2756db1714cf6824e2a719ec18eb, type: 3}
+  m_PrefabInstance: {fileID: 1910908471}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762076531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efdd9790485369b4c9433df3c9e5a9bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1844820194
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1865,6 +1891,10 @@ PrefabInstance:
       propertyPath: _timer
       value: 
       objectReference: {fileID: 2050913531}
+    - target: {fileID: 1979503183610165384, guid: 3e7c2756db1714cf6824e2a719ec18eb, type: 3}
+      propertyPath: _kickAndStun
+      value: 
+      objectReference: {fileID: 1762076534}
     - target: {fileID: 2485524898215325708, guid: 3e7c2756db1714cf6824e2a719ec18eb, type: 3}
       propertyPath: m_Name
       value: Player Purple
