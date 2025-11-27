@@ -87,7 +87,11 @@ public class Gun : MonoBehaviour, IWeapon
         _cooldown = 1f / ShootsPerSecond;
 
         if (_magazine.AmountAmmo <= 0 || !_health.IsAlive)
+        {
             NoAmmoLeft?.Invoke();
+            TurnOff();
+        }
+           
             
     }
 

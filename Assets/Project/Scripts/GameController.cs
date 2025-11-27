@@ -20,7 +20,6 @@ public class GameController : MonoBehaviour
     private bool endGame = false;
     private bool noAmmoLeftAll = false;
     private string winText = "NO AMMO LEFT!";
-
     public event Action NoAmmoLeftAll;
 
     private void Awake()

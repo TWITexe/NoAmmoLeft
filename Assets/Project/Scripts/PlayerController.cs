@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private Gun _weapon;
-
     private IInputReader _input;
     private PlayerMovement _movement;
     private PlayerAnimation _animation;
@@ -44,7 +43,7 @@ public class PlayerController : MonoBehaviour
             Vector2 shootDirection = transform.right;
             Weapon.Shoot(shootDirection);
         }
-        if (_input.IsKicking && _weapon.IsEnabled == false)
+        if (_input.IsKicking && _weapon.IsEnabled == false )
         {
             _kickAndStun.Kick();
         }
