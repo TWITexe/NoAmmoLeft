@@ -5,6 +5,7 @@ namespace UI
 {
     public class NoAmmoLeftView : MonoBehaviour
     {
+        [SerializeField] GameController controller;
         [SerializeField]
         private Gun _gun;
 
@@ -14,7 +15,7 @@ namespace UI
         private void Awake()
         {
             _gun.NoAmmoLeft += Show;
-
+            controller.NoAmmoLeftAll += Hide;
             _text.gameObject.SetActive(false);
         }
 
@@ -26,6 +27,10 @@ namespace UI
         private void Show()
         {
             _text.gameObject.SetActive(true);
+        }
+        private void Hide()
+        {
+            _text.gameObject.SetActive(false);
         }
     }
 }

@@ -121,6 +121,8 @@ public class Gun : MonoBehaviour, IWeapon
     private void TurnOn()
     {
         SetEnable(true);
+        if (_magazine.AmountAmmo <= 0)
+            NoAmmoLeft?.Invoke();
     }
 
     private void SetEnable(bool value)
