@@ -403,7 +403,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerAnimator: {fileID: 5479541369693301864}
   fist: {fileID: 3273450862714365420}
-  stunTime: 4
+  stunTime: 0.8
 --- !u!114 &-6717885728857027307
 MonoBehaviour:
   m_ObjectHideFlags: 0

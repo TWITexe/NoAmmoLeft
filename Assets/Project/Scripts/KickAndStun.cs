@@ -33,9 +33,9 @@ public class KickAndStun : MonoBehaviour
     }
     IEnumerator WakeUp()
     {
-        yield return new WaitForSeconds(stunTime-0.01f);
-        _animation.StunAnimation(false);
         yield return new WaitForSeconds(stunTime);
+        _animation.StunAnimation(false);
+        yield return new WaitForSeconds(stunTime-0.25f);
         _isStun = false;
         gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
     }
