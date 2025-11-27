@@ -22,6 +22,9 @@ public class KickAndStun : MonoBehaviour
     }
     public void GetStun()
     {
+        if (gameObject.GetComponent<Health>().IsAlive == false)
+            return;
+
         Debug.Log(gameObject.name + " stunned");
         _isStun = true;
         _animation.StunAnimation(true);
