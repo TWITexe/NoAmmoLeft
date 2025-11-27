@@ -46,13 +46,9 @@ public class RainbowText : MonoBehaviour
     void UpdatePerCharacterColors()
     {
         TMP_TextInfo textInfo = textMeshPro.textInfo;
-
-        // Обновляем цвета для каждого символа
         for (int i = 0; i < textInfo.characterCount; i++)
         {
             TMP_CharacterInfo charInfo = textInfo.characterInfo[i];
-
-            // Пропускаем пробелы и невидимые символы
             if (!charInfo.isVisible) continue;
 
             int materialIndex = charInfo.materialReferenceIndex;
@@ -61,15 +57,11 @@ public class RainbowText : MonoBehaviour
             Color32[] vertexColors = textInfo.meshInfo[materialIndex].colors32;
             float charHue = (baseHue + i * characterOffset) % 1f;
             Color32 charColor = Color.HSVToRGB(charHue, saturation, brightness);
-
-            // Применяем цвет ко всем вершинам символа
             for (int j = 0; j < 4; j++)
             {
                 vertexColors[vertexIndex + j] = charColor;
             }
         }
-
-        // Обновляем mesh
         textMeshPro.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
     }
 }
